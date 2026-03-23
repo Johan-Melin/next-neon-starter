@@ -8,6 +8,7 @@ Template for tracker apps. Stack: Next.js 16 (App Router), Neon PostgreSQL, Auth
 
 ### Auth
 - Auth is handled by Auth.js v5 (`auth.ts` at project root).
+- Route protection is in `proxy.ts` (Next.js 16 renamed Middleware → Proxy). Export as named `proxy` const.
 - Use `getUser()` from `lib/dal.ts` in Server Components to get the current user. It redirects to `/login` if not authenticated and is memoized per request.
 - Authenticated pages live inside `app/(dashboard)/` which has a layout that enforces auth.
 - Unauthenticated pages (`/login`, `/signup`) live inside `app/(auth)/`.
@@ -24,6 +25,7 @@ Template for tracker apps. Stack: Next.js 16 (App Router), Neon PostgreSQL, Auth
 
 ### File structure
 ```
+proxy.ts        # Route protection (Next.js 16 Proxy, replaces middleware)
 app/
   (auth)/       # login, signup — no auth required
   (dashboard)/  # protected pages — auth enforced by layout

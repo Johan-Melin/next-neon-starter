@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 const authRoutes = ["/login", "/signup"];
 
-export default auth((req) => {
+export const proxy = auth((req) => {
   const { nextUrl, auth: session } = req;
   const isLoggedIn = !!session?.user;
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
