@@ -39,6 +39,27 @@ db/
   schema.sql    # Full DB schema
 ```
 
+### Metadata (title, description, favicon)
+
+Set app-wide metadata in `app/layout.tsx`. Always fill in a real title and description — never leave them as placeholder strings:
+```ts
+export const metadata: Metadata = {
+  title: {
+    template: "%s | MyApp",  // page title format
+    default: "MyApp",        // shown when no page-level title is set
+  },
+  description: "One-line description of what the app does.",
+};
+```
+
+For per-page titles, export `metadata` from the page file:
+```ts
+export const metadata: Metadata = { title: "Dashboard" };
+// → renders as "Dashboard | MyApp"
+```
+
+The favicon lives at `app/favicon.ico`. Replace it with a project-specific icon — Next.js picks it up automatically with no extra config needed.
+
 ### Adding a new feature
 1. Add table(s) to `db/schema.sql` and run against Neon.
 2. Add page(s) under `app/(dashboard)/` for protected UI.
